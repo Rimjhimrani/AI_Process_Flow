@@ -2,6 +2,7 @@ import streamlit as st
 import google.generativeai as genai
 import re
 import json
+import time
 
 # ─────────────────────────────────────────────
 # PAGE CONFIG
@@ -378,9 +379,34 @@ Your job:
 
 def call_gemini(api_key: str, prompt: str) -> str:
     genai.configure(api_key=api_key)
-    model = genai.GenerativeModel("gemini-2.0-flash")
-    response = model.generate_content(prompt)
-    return response.text.strip()
+    models_to_try = ["gemini-2.0-flash-lite", "gemini-2.0-flash", "gemini-1.5-flash-latest"]
+    last_error = None
+    for model_name in models_to_try:
+        for attempt in range(3):
+            try:
+                model = genai.GenerativeModel(model_name)
+                response = model.generate_content(prompt)
+                return response.text.strip()
+            except Exception as e:
+                last_error = e
+                err_str = str(e)
+                if "429" in err_str:
+                    # Extract retry delay from error or default to 20s
+                    wait = 20
+                    import re as _re
+                    m = _re.search(r"retry in (\d+)", err_str)
+                    if m:
+                        wait = int(m.group(1)) + 2
+                    if attempt < 2:
+                        st.toast(f"⏳ Rate limit hit on {model_name}, retrying in {wait}s...", icon="⚠️")
+                        time.sleep(wait)
+                    else:
+                        break  # try next model
+                elif "404" in err_str or "not found" in err_str.lower():
+                    break  # model doesn't exist, try next
+                else:
+                    raise  # other errors, raise immediately
+    raise Exception(f"All models exhausted. Last error: {last_error}")
 
 def extract_json(text: str) -> dict:
     # Strip markdown fences if Gemini still wraps it
