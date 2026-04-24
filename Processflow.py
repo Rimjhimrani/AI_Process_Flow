@@ -18,178 +18,170 @@ st.set_page_config(
 # ─────────────────────────────────────────────
 st.markdown("""
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@700;800&display=swap');
 
-/* Reset & base */
+/* ── Base ── */
 html, body, [class*="css"] {
-    font-family: 'Syne', sans-serif;
-    background-color: #0a0a0f;
-    color: #e8e8f0;
+    font-family: 'Inter', sans-serif;
+    background-color: #f0f4ff;
+    color: #1a1a2e;
+}
+.stApp { background: #f0f4ff; }
+
+/* ── Sidebar ── */
+section[data-testid="stSidebar"] {
+    background: #ffffff !important;
+    border-right: 2px solid #e2e8f0;
+}
+section[data-testid="stSidebar"] * { color: #1a1a2e !important; }
+section[data-testid="stSidebar"] .block-container { padding-top: 1.5rem; }
+section[data-testid="stSidebar"] h3 {
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #6366f1 !important;
+    margin-bottom: 0.5rem;
 }
 
-/* App background */
-.stApp {
-    background: #0a0a0f;
+/* ── Sidebar inputs ── */
+section[data-testid="stSidebar"] input {
+    background: #f8faff !important;
+    border: 2px solid #c7d2fe !important;
+    border-radius: 8px !important;
+    color: #1a1a2e !important;
+    font-size: 0.88rem !important;
 }
+section[data-testid="stSidebar"] input:focus {
+    border-color: #6366f1 !important;
+}
+section[data-testid="stSidebar"] .stSelectbox > div > div {
+    background: #f8faff !important;
+    border: 2px solid #c7d2fe !important;
+    border-radius: 8px !important;
+    color: #1a1a2e !important;
+}
+/* Sidebar radio labels */
+section[data-testid="stSidebar"] .stRadio label { color: #1a1a2e !important; font-size: 0.9rem; }
 
-/* Header */
+/* ── Main header ── */
 .main-header {
     text-align: center;
-    padding: 2rem 0 1rem 0;
-    border-bottom: 1px solid #1e1e2e;
+    padding: 2.5rem 1rem 1.5rem;
     margin-bottom: 2rem;
+    background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #06b6d4 100%);
+    border-radius: 20px;
+    box-shadow: 0 8px 32px rgba(99,102,241,0.25);
 }
 .main-header h1 {
-    font-family: 'Syne', sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-weight: 800;
     font-size: 3rem;
-    background: linear-gradient(135deg, #a78bfa, #38bdf8, #34d399);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: #ffffff;
     margin: 0;
     letter-spacing: -1px;
+    text-shadow: 0 2px 12px rgba(0,0,0,0.15);
 }
 .main-header p {
-    color: #6b7280;
-    font-family: 'Space Mono', monospace;
-    font-size: 0.85rem;
+    color: rgba(255,255,255,0.85);
+    font-size: 1rem;
     margin-top: 0.5rem;
+    font-weight: 500;
 }
 
-/* Cards */
-.card {
-    background: #111118;
-    border: 1px solid #1e1e2e;
-    border-radius: 12px;
-    padding: 1.5rem;
-    margin-bottom: 1.2rem;
+/* ── Section headings ── */
+h4 { color: #1a1a2e !important; font-weight: 700 !important; }
+
+/* ── Main text inputs ── */
+.stTextInput > div > div > input,
+.stTextArea > div > div > textarea {
+    background: #ffffff !important;
+    border: 2px solid #c7d2fe !important;
+    border-radius: 12px !important;
+    color: #1a1a2e !important;
+    font-size: 0.95rem !important;
+    padding: 0.75rem 1rem !important;
+}
+.stTextInput > div > div > input:focus,
+.stTextArea > div > div > textarea:focus {
+    border-color: #6366f1 !important;
+    box-shadow: 0 0 0 3px rgba(99,102,241,0.15) !important;
+}
+/* Input labels */
+.stTextArea label, .stTextInput label { color: #374151 !important; font-weight: 600 !important; }
+
+/* ── Buttons ── */
+.stButton > button {
+    background: linear-gradient(135deg, #6366f1, #8b5cf6) !important;
+    color: #ffffff !important;
+    border: none !important;
+    border-radius: 10px !important;
+    font-family: 'Inter', sans-serif !important;
+    font-weight: 700 !important;
+    font-size: 1rem !important;
+    padding: 0.65rem 1.5rem !important;
+    transition: all 0.2s ease !important;
+    box-shadow: 0 4px 14px rgba(99,102,241,0.35) !important;
+    width: 100% !important;
+}
+.stButton > button:hover {
+    transform: translateY(-1px) !important;
+    box-shadow: 0 6px 20px rgba(99,102,241,0.45) !important;
 }
 
-/* Prompt quality badge */
+/* ── Select box (main) ── */
+.stSelectbox > div > div {
+    background: #ffffff !important;
+    border: 2px solid #c7d2fe !important;
+    border-radius: 10px !important;
+    color: #1a1a2e !important;
+}
+.stSelectbox label { color: #374151 !important; font-weight: 600 !important; }
+
+/* ── Radio ── */
+.stRadio label { color: #1a1a2e !important; font-size: 0.95rem !important; }
+.stRadio > div { gap: 0.75rem; }
+
+/* ── Tabs ── */
+.stTabs [data-baseweb="tab-list"] {
+    background: #e0e7ff;
+    border-radius: 10px;
+    padding: 4px;
+    gap: 4px;
+}
+.stTabs [data-baseweb="tab"] {
+    background: transparent;
+    color: #6366f1;
+    border-radius: 8px;
+    font-weight: 600;
+}
+.stTabs [aria-selected="true"] {
+    background: #ffffff !important;
+    color: #4f46e5 !important;
+    box-shadow: 0 2px 8px rgba(99,102,241,0.15) !important;
+}
+
+/* ── Alerts ── */
+.stAlert { border-radius: 10px !important; font-size: 0.88rem !important; }
+
+/* ── Badges ── */
 .badge {
     display: inline-block;
-    padding: 0.25rem 0.75rem;
+    padding: 0.2rem 0.8rem;
     border-radius: 20px;
-    font-family: 'Space Mono', monospace;
     font-size: 0.75rem;
     font-weight: 700;
     letter-spacing: 0.05em;
 }
-.badge-weak   { background: #3f1212; color: #f87171; border: 1px solid #7f1d1d; }
-.badge-medium { background: #3f2a08; color: #fbbf24; border: 1px solid #92400e; }
-.badge-strong { background: #083f1e; color: #34d399; border: 1px solid #065f46; }
+.badge-weak   { background: #fee2e2; color: #dc2626; border: 1.5px solid #fca5a5; }
+.badge-medium { background: #fef3c7; color: #d97706; border: 1.5px solid #fcd34d; }
+.badge-strong { background: #dcfce7; color: #16a34a; border: 1.5px solid #86efac; }
 
-/* Mode toggle buttons */
-.stRadio > div { gap: 0.5rem; }
-
-/* Sidebar */
-section[data-testid="stSidebar"] {
-    background: #0d0d14;
-    border-right: 1px solid #1e1e2e;
-}
-section[data-testid="stSidebar"] .block-container { padding-top: 2rem; }
-
-/* Inputs */
-.stTextInput > div > div > input,
-.stTextArea > div > div > textarea {
-    background: #111118 !important;
-    border: 1px solid #1e1e2e !important;
-    border-radius: 8px !important;
-    color: #e8e8f0 !important;
-    font-family: 'Space Mono', monospace !important;
-    font-size: 0.9rem !important;
-}
-.stTextInput > div > div > input:focus,
-.stTextArea > div > div > textarea:focus {
-    border-color: #a78bfa !important;
-    box-shadow: 0 0 0 2px rgba(167,139,250,0.15) !important;
-}
-
-/* Buttons */
-.stButton > button {
-    background: linear-gradient(135deg, #7c3aed, #2563eb);
-    color: white;
-    border: none;
-    border-radius: 8px;
-    font-family: 'Syne', sans-serif;
-    font-weight: 600;
-    font-size: 0.9rem;
-    padding: 0.6rem 1.5rem;
-    transition: opacity 0.2s;
-    width: 100%;
-}
-.stButton > button:hover { opacity: 0.85; }
-
-/* Select box */
-.stSelectbox > div > div {
-    background: #111118 !important;
-    border-color: #1e1e2e !important;
-    color: #e8e8f0 !important;
-    border-radius: 8px !important;
-}
-
-/* Info / warning / success boxes */
-.stAlert {
-    border-radius: 8px !important;
-    font-family: 'Space Mono', monospace !important;
-    font-size: 0.82rem !important;
-}
-
-/* Code blocks */
-.stCodeBlock {
-    border-radius: 8px !important;
-    border: 1px solid #1e1e2e !important;
-}
-
-/* Tabs */
-.stTabs [data-baseweb="tab-list"] {
-    background: #111118;
-    border-radius: 8px;
-    padding: 4px;
-    gap: 4px;
-    border: 1px solid #1e1e2e;
-}
-.stTabs [data-baseweb="tab"] {
-    background: transparent;
-    color: #6b7280;
-    border-radius: 6px;
-    font-family: 'Syne', sans-serif;
-    font-weight: 600;
-}
-.stTabs [aria-selected="true"] {
-    background: #1e1e2e !important;
-    color: #a78bfa !important;
-}
-
-/* Divider */
-hr { border-color: #1e1e2e !important; }
-
-/* Mermaid container */
-.mermaid-wrapper {
-    background: #111118;
-    border: 1px solid #1e1e2e;
-    border-radius: 12px;
-    padding: 1.5rem;
-    overflow-x: auto;
-}
-
-/* Step badges */
-.step-badge {
-    background: #1e1e2e;
-    border: 1px solid #2d2d40;
-    border-radius: 8px;
-    padding: 0.75rem 1rem;
-    margin: 0.4rem 0;
-    font-family: 'Space Mono', monospace;
-    font-size: 0.8rem;
-    color: #c4b5fd;
-}
-
-/* Clarity meter */
+/* ── Clarity bar ── */
 .clarity-bar-bg {
-    background: #1e1e2e;
+    background: #e0e7ff;
     border-radius: 20px;
-    height: 8px;
+    height: 10px;
     width: 100%;
     overflow: hidden;
     margin: 0.5rem 0;
@@ -198,6 +190,88 @@ hr { border-color: #1e1e2e !important; }
     height: 100%;
     border-radius: 20px;
     transition: width 0.5s ease;
+}
+
+/* ── Step badges ── */
+.step-badge {
+    background: #ffffff;
+    border: 1.5px solid #c7d2fe;
+    border-left: 4px solid #6366f1;
+    border-radius: 8px;
+    padding: 0.65rem 1rem;
+    margin: 0.4rem 0;
+    font-size: 0.88rem;
+    color: #374151;
+    font-weight: 500;
+}
+
+/* ── Card ── */
+.card {
+    background: #ffffff;
+    border: 1.5px solid #c7d2fe;
+    border-radius: 14px;
+    padding: 1.5rem;
+    margin-bottom: 1.2rem;
+    box-shadow: 0 2px 12px rgba(99,102,241,0.08);
+}
+.card p { color: #1a1a2e !important; }
+
+/* ── Mermaid wrapper ── */
+.mermaid-wrapper {
+    background: #ffffff;
+    border: 2px solid #e0e7ff;
+    border-radius: 14px;
+    padding: 1.5rem;
+    overflow-x: auto;
+    box-shadow: 0 2px 12px rgba(99,102,241,0.08);
+}
+
+/* ── Empty state ── */
+.empty-state {
+    height: 380px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px dashed #c7d2fe;
+    border-radius: 14px;
+    background: #ffffff;
+}
+
+/* ── Progress bar ── */
+.stProgress > div > div { background: #6366f1 !important; border-radius: 20px; }
+.stProgress > div { background: #e0e7ff !important; border-radius: 20px; }
+
+/* ── Code block ── */
+.stCodeBlock { border: 1.5px solid #c7d2fe !important; border-radius: 10px !important; }
+
+/* ── Download button ── */
+.stDownloadButton > button {
+    background: #f0f4ff !important;
+    color: #6366f1 !important;
+    border: 2px solid #c7d2fe !important;
+    border-radius: 10px !important;
+    font-weight: 600 !important;
+    box-shadow: none !important;
+}
+.stDownloadButton > button:hover {
+    background: #e0e7ff !important;
+    border-color: #6366f1 !important;
+    transform: none !important;
+}
+
+/* ── Divider ── */
+hr { border-color: #e0e7ff !important; }
+
+/* ── Expander ── */
+.streamlit-expanderHeader { color: #4f46e5 !important; font-weight: 600 !important; }
+.streamlit-expanderContent { background: #f8faff !important; border-radius: 0 0 10px 10px; }
+
+/* ── History items ── */
+.history-item {
+    font-size: 0.78rem;
+    color: #6b7280;
+    padding: 0.4rem 0;
+    border-bottom: 1px solid #e0e7ff;
 }
 </style>
 """, unsafe_allow_html=True)
@@ -317,23 +391,24 @@ def render_mermaid(code: str):
     """Render Mermaid diagram via CDN in an HTML component."""
     escaped = code.replace("`", r"\`")
     html = f"""
-    <div class="mermaid-wrapper">
+    <div class="mermaid-wrapper" style="background:#fff;border:2px solid #e0e7ff;border-radius:14px;padding:1.5rem;overflow-x:auto;">
       <div id="mermaid-graph" style="text-align:center;"></div>
     </div>
     <script type="module">
       import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
       mermaid.initialize({{
         startOnLoad: false,
-        theme: 'dark',
+        theme: 'default',
         themeVariables: {{
-          primaryColor: '#1e1e2e',
-          primaryTextColor: '#e8e8f0',
-          primaryBorderColor: '#a78bfa',
-          lineColor: '#6b7280',
-          secondaryColor: '#111118',
-          tertiaryColor: '#0a0a0f',
-          edgeLabelBackground: '#1e1e2e',
-          clusterBkg: '#1e1e2e',
+          primaryColor: '#e0e7ff',
+          primaryTextColor: '#1a1a2e',
+          primaryBorderColor: '#6366f1',
+          lineColor: '#6366f1',
+          secondaryColor: '#f0f4ff',
+          tertiaryColor: '#faf5ff',
+          edgeLabelBackground: '#f0f4ff',
+          clusterBkg: '#f0f4ff',
+          fontFamily: 'Inter, sans-serif',
         }}
       }});
       const code = `{escaped}`;
@@ -378,11 +453,10 @@ with st.sidebar:
     st.markdown("### 📜 History")
     if st.session_state.history:
         for i, h in enumerate(reversed(st.session_state.history[-5:])):
-            st.markdown(f"""<div style="font-family:'Space Mono',monospace;font-size:0.7rem;
-                color:#6b7280;padding:0.4rem 0;border-bottom:1px solid #1e1e2e;">
+            st.markdown(f"""<div class="history-item">
                 {i+1}. {h['input'][:40]}…</div>""", unsafe_allow_html=True)
     else:
-        st.markdown("<p style='color:#6b7280;font-size:0.8rem;'>No history yet.</p>", unsafe_allow_html=True)
+        st.markdown("<p style='color:#9ca3af;font-size:0.82rem;'>No history yet.</p>", unsafe_allow_html=True)
 
     if st.button("🗑️ Clear History"):
         st.session_state.history = []
@@ -393,8 +467,8 @@ with st.sidebar:
 # ─────────────────────────────────────────────
 st.markdown("""
 <div class="main-header">
-  <h1>DiagramAI</h1>
-  <p>Powered by Google Gemini · Turn vague ideas into clear system diagrams</p>
+  <h1>🧠 DiagramAI</h1>
+  <p>Powered by Google Gemini &nbsp;·&nbsp; Turn vague ideas into clear system diagrams</p>
 </div>
 """, unsafe_allow_html=True)
 
@@ -421,7 +495,7 @@ if "Auto" in mode:
             st.markdown(f"""
             <div style="margin-bottom:1rem;">
               <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:0.4rem;">
-                <span style="font-family:'Space Mono',monospace;font-size:0.8rem;color:#6b7280;">
+                <span style="font-size:0.82rem;color:#6b7280;font-weight:600;">
                   Prompt Clarity
                 </span>
                 <span class="badge {badge_cls}">{label.upper()} · {clarity}%</span>
@@ -429,7 +503,7 @@ if "Auto" in mode:
               <div class="clarity-bar-bg">
                 <div class="clarity-bar-fill" style="width:{clarity}%;background:{bar_color};"></div>
               </div>
-              {'<p style="font-family:Space Mono,monospace;font-size:0.75rem;color:#f87171;margin-top:0.3rem;">⚠️ Prompt is vague — Gemini will auto-improve it before generating.</p>' if clarity < 40 else ''}
+              {'<p style="font-size:0.8rem;color:#dc2626;margin-top:0.4rem;font-weight:500;">⚠️ Prompt is vague — Gemini will auto-improve it before generating.</p>' if clarity < 40 else ''}
             </div>
             """, unsafe_allow_html=True)
 
@@ -485,29 +559,29 @@ if "Auto" in mode:
         # Show refined prompt notice
         if "auto_refined" in st.session_state:
             with st.expander("🔧 Auto-Improved Prompt (click to see)"):
-                st.markdown(f"""<div style="font-family:'Space Mono',monospace;font-size:0.8rem;
-                    color:#c4b5fd;line-height:1.6;">{st.session_state.auto_refined}</div>""",
+                st.markdown(f"""<div style="font-size:0.88rem;color:#374151;
+                    line-height:1.7;padding:0.5rem;">{st.session_state.auto_refined}</div>""",
                     unsafe_allow_html=True)
 
         # System breakdown
         if st.session_state.last_steps:
             st.markdown("#### 🧩 System Breakdown")
             if hasattr(st.session_state, 'last_actors') and st.session_state.get("last_actors"):
-                st.markdown(f"""<p style="font-family:'Space Mono',monospace;font-size:0.78rem;
-                    color:#6b7280;margin-bottom:0.3rem;">👤 ACTORS</p>""", unsafe_allow_html=True)
-                actors_str = " · ".join([f"<span style='color:#a78bfa'>{a}</span>"
+                st.markdown(f"""<p style="font-size:0.78rem;font-weight:700;
+                    color:#6366f1;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:0.3rem;">👤 Actors</p>""", unsafe_allow_html=True)
+                actors_str = " · ".join([f"<span style='color:#4f46e5;font-weight:600;background:#e0e7ff;padding:2px 10px;border-radius:20px;'>{a}</span>"
                                          for a in st.session_state.get("last_actors",[])])
                 st.markdown(f"<p style='font-size:0.85rem;'>{actors_str}</p>", unsafe_allow_html=True)
 
-            st.markdown(f"""<p style="font-family:'Space Mono',monospace;font-size:0.78rem;
-                color:#6b7280;margin:0.6rem 0 0.3rem;">📋 PROCESS STEPS</p>""", unsafe_allow_html=True)
+            st.markdown(f"""<p style="font-size:0.78rem;font-weight:700;
+                color:#6366f1;text-transform:uppercase;letter-spacing:0.05em;margin:0.8rem 0 0.3rem;">📋 Process Steps</p>""", unsafe_allow_html=True)
             for step in st.session_state.last_steps:
                 st.markdown(f'<div class="step-badge">→ {step}</div>', unsafe_allow_html=True)
 
     with col2:
         st.markdown("#### 📊 Diagram Output")
         if st.session_state.last_mermaid:
-            st.markdown(f"""<p style="font-family:'Space Mono',monospace;font-size:0.78rem;
+            st.markdown(f"""<p style="font-size:0.82rem;font-weight:600;
                 color:#6b7280;margin-bottom:0.8rem;">
                 🖼️ {st.session_state.last_diagram}</p>""", unsafe_allow_html=True)
 
@@ -525,12 +599,14 @@ if "Auto" in mode:
                 )
         else:
             st.markdown("""
-            <div style="height:400px;display:flex;align-items:center;justify-content:center;
-                border:1px dashed #1e1e2e;border-radius:12px;">
-              <div style="text-align:center;color:#6b7280;">
-                <div style="font-size:3rem;margin-bottom:1rem;">🧠</div>
-                <p style="font-family:'Space Mono',monospace;font-size:0.85rem;">
+            <div class="empty-state">
+              <div style="text-align:center;color:#9ca3af;">
+                <div style="font-size:3.5rem;margin-bottom:1rem;">📊</div>
+                <p style="font-size:1rem;font-weight:600;color:#6b7280;margin:0;">
                   Your diagram will appear here
+                </p>
+                <p style="font-size:0.82rem;color:#9ca3af;margin-top:0.4rem;">
+                  Describe your system and click Generate
                 </p>
               </div>
             </div>
@@ -541,7 +617,7 @@ if "Auto" in mode:
 # ─────────────────────────────────────────────
 else:
     st.markdown("#### 🧭 Guided System Builder")
-    st.markdown("""<p style="font-family:'Space Mono',monospace;font-size:0.8rem;color:#6b7280;
+    st.markdown("""<p style="font-size:0.9rem;color:#6b7280;font-weight:500;
         margin-bottom:1.5rem;">Answer a few questions and we'll build your diagram step by step.</p>""",
         unsafe_allow_html=True)
 
@@ -554,9 +630,10 @@ else:
     if step < total:
         q_key, q_text = GUIDED_QUESTIONS[step]
         st.markdown(f"""<div class="card">
-            <p style="font-family:'Space Mono',monospace;font-size:0.8rem;color:#a78bfa;margin:0 0 0.5rem;">
+            <p style="font-size:0.78rem;font-weight:700;color:#6366f1;
+            text-transform:uppercase;letter-spacing:0.06em;margin:0 0 0.5rem;">
             Question {step+1} of {total}</p>
-            <p style="font-size:1.05rem;font-weight:600;margin:0;">{q_text}</p>
+            <p style="font-size:1.05rem;font-weight:700;color:#1a1a2e;margin:0;">{q_text}</p>
         </div>""", unsafe_allow_html=True)
 
         answer = st.text_input("Your answer", placeholder="Type here...", key=f"guided_{step}")
@@ -582,8 +659,8 @@ else:
         for q_key, q_text in GUIDED_QUESTIONS:
             val = answers.get(q_key, "—")
             st.markdown(f"""<div class="step-badge">
-                <span style="color:#6b7280;">{q_text}</span><br/>
-                <span style="color:#e8e8f0;">{val}</span>
+                <span style="font-size:0.75rem;color:#6b7280;font-weight:600;">{q_text}</span><br/>
+                <span style="color:#1a1a2e;font-weight:600;">{val}</span>
             </div>""", unsafe_allow_html=True)
 
         structured_input = f"""
